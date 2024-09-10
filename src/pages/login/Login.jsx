@@ -13,16 +13,23 @@ const Login = () => {
       </video>
       <form className='login-form'>
         <h2>{currState}</h2>
+        { currState=="Sign up"?
         <input type="text" placeholder='username' required className='form-input'/>
+        :null
+        }
         <input type="email" placeholder='Email' required className='form-input'/>
         <input type="password" placeholder='Password' required className='form-input'/>
-        <button type='submit'>Sign up</button>
+        <button type='submit'>{currState === "Sign up"?"Create Account":"Login now"}</button>
         <div className='login-term'>
       <input type="checkbox" />
       <p>I agree to the <a href="">terms of service</a></p>
         </div>
         <div className="login-forgot">
+          { currState=="Sign up"?
           <p className='login-toggle'>Already have an account? <span className='click-here' onClick={()=>setCurrState("Login")}>Click here</span></p>
+          :
+          <p className='login-toggle'>Dont have an account? <span className='click-here' onClick={()=>setCurrState("Sign up")}>Click here</span></p>
+          }
         </div>
       </form>
     </div>
