@@ -22,7 +22,7 @@ const Login = () => {
         <button type='submit'>{currState === "Sign up"?"Create Account":"Login now"}</button>
         <div className='login-term'>
       <input type="checkbox" />
-      <p>I agree to the <a href="">terms of service</a></p>
+      <p>I agree to the <span> terms of service</span></p>
         </div>
         <div className="login-forgot">
           { currState=="Sign up"?
