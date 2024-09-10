@@ -22,7 +22,7 @@ const Login = () => {
       <p>I agree to the <a href="">terms of service</a></p>
         </div>
         <div className="login-forgot">
-          <p className='login-toggle'>Already have an account? <a href=""><span onClick={()=>setCurrState("Login")}>Click here</span></a></p>
+          <p className='login-toggle'>Already have an account? <span className='click-here' onClick={()=>setCurrState("Login")}>Click here</span></p>
         </div>
       </form>
     </div>

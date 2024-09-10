@@ -112,11 +112,13 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.login-toggle a {
+.login-toggle span {
     color: #007bff;
     text-decoration: none;
 }
 
-.login-toggle a span {
+.login-toggle  span {
     font-weight: bold;
+    cursor: pointer;
 }
+
