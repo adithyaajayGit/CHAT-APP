@@ -46,11 +46,25 @@ const Chatbox = () => {
     setInput("")
   }
 
+  const
+
+  const convertTimestamp=(timestamp)=>{
+    let date = timestamp.toDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    if (hour>12) {
+      return hour-12 + ":" + minute + "PM";
+    }
+    else{
+      return hour + ":" + minute + "AM";
+    }
+  }
+
   useEffect(() => {
     if (messagesId) {
       const unSub = onSnapshot(doc(db, 'messages', messagesId), (res) => {
         setMessages(res.data().messages.reverse())
-        console.log(res.data().messages.reverse());
+        // console.log(res.data().messages.reverse());
       })
       return () => {
         unSub();
@@ -67,27 +81,15 @@ const Chatbox = () => {
       </div>
 
       <div className="chat-msg">
-        <div className="s-msg">
-          <p className='msg'>Lorem ipsum dolor, t veritatis, expedita dignissimos consequuntur.</p>
-          <div>
-            <img src={assets.profile_img} alt="" />
-            <p>2:30 PM</p>
-          </div>
-        </div>
-        <div className="s-msg">
-          <img className='msg-img' src={assets.pic1} alt="" />
-          <div>
-            <img src={assets.profile_img} alt="" />
-            <p>2:30 PM</p>
-          </div>
-        </div>
-        <div className="r-msg">
-          <p className='msg'>Lorem ipsum dolor, t veritatis, expedita dignissimos consequuntur.</p>
-          <div>
-            <img src={assets.profile_img} alt="" />
-            <p>2:30 PM</p>
-          </div>
-        </div>
+      {messages.map((msg,index)=>(
+           <div key={index} className={msg.sId === userData.id ? "s-msg" : "r-msg"}>
+           <p className='msg'>{msg.text}</p>
+           <div>
+             <img src={msg.sId === userData.id ? userData.avatar : chatUser.userData.avatar}alt="" />
+             <p>{convertTimestamp(msg.createdAt)}</p>
+           </div>
+         </div>
+      ))}    
       </div>
 
       <div className="chat-input">
